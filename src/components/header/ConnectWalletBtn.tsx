@@ -14,6 +14,8 @@ import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
 import useMobileQuery from '@/common/useMobileQuery'
 import Stack from '@mui/material/Stack'
+import ConnectionIcon from '/public/icon-connection.svg'
+import CloseBtnIcon from '/public/icon-close-btn.svg'
 
 interface PropsType {
   rightBtnStyle: object;
@@ -80,12 +82,7 @@ export default function ConnectWalletBtn({
         }}
       >
         <Stack direction="row" spacing={10}>
-          <NextImage
-            alt="connect your wallet"
-            src={isDarkMode ? '/connect-icon-dark.svg' : '/connect-icon-dark.svg'}
-            width="24"
-            height="24"
-          />
+          <ConnectionIcon color="var(--vb-white)" />
           <Typography>CONNECT YOUR WALLET</Typography>
         </Stack>
         {isMobile && <Button
@@ -97,12 +94,7 @@ export default function ConnectWalletBtn({
           }}
           onClick={() => setOpen(false)}
         >
-          <NextImage
-            src={isDarkMode ? '/close-btn-dark.svg' : '/close-btn-dark.svg'}
-            alt="close"
-            width="20"
-            height="20"
-          />
+          <CloseBtnIcon color='var(--vb-gray-400)' />
         </Button>}
       </DialogTitle>
       <DialogContent sx={{

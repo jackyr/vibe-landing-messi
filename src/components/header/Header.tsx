@@ -9,6 +9,9 @@ import ConnectWalletBtn from './ConnectWalletBtn'
 import useThemeMode from '@/common/useThemeMode'
 import Stack from '@mui/material/Stack'
 import useMobileQuery from '@/common/useMobileQuery'
+import Logo from '/public/logo.svg'
+import ModeIcon from '/public/icon-mode.svg'
+import ArrowDownIcon from '/public/icon-arrow-down.svg'
 
 interface PropsType {
   tabValue: 'boots' | 'board';
@@ -67,13 +70,16 @@ export default function Header({
     ))}
   </Tabs>)
   
-  return <header style={{ borderBottom: '1px solid var(--vb-gray-800)' }}>
+  return <Box component="header" sx={{
+    borderBottom: '1px solid',
+    borderColor: 'common.gray-800',
+  }}>
     <Box sx={{
       display: 'flex',
       justifyContent: 'space-between',
       alignItems: 'center',
       px: 32,
-      height: 60,
+      height: 59,
       bgcolor: 'common.black',
       [mobileQuery]: {
         pl: 8,
@@ -81,28 +87,18 @@ export default function Header({
       }
     }}>
       <NextLink href="/" className='imgContainer'>
-        <NextImage
-          alt="boots"
-          src={isDarkMode ? '/logo-dark.svg' : '/logo-light.svg'}
-          width="68"
-          height="32"
-        />
+        <Logo color={isDarkMode ? 'white' : 'var(--vb-white)'} />
       </NextLink>
       <Stack direction="row" spacing={48}>
         {!isMobile && navBar}
-        <Stack direction="row" spacing={24} sx={{ alignItems: 'center' }}>
+        <Stack direction="row" alignItems="center" spacing={24}>
           <Button
             sx={rightBtnStyle}
             onClick={toggleThemeMode}
           >
-            <NextImage
-              src={isDarkMode ? '/mode-light.svg' : 'mode-dark.svg'}
-              alt="dark mode"
-              width="16"
-              height="16"
-            />
+            <ModeIcon color='var(--vb-white)' />
           </Button>
-          {walletInfo ? <Button sx={rightBtnStyle}>
+          {walletInfo ? <Button sx={rightBtnStyle} >
             <NextImage
               src={walletInfo.avatar}
               alt="wallet avatar"
@@ -118,16 +114,11 @@ export default function Header({
                 ? `${walletInfo.address.slice(0, 6)}..${walletInfo.address.slice(-2)}`
                 : walletInfo.address}
             </Typography>
-            <NextImage
-              src={isDarkMode ? '/arrow-down-dark.svg' : '/arrow-down-light.svg'}
-              alt="arrow down"
-              width="16"
-              height="16"
-            />
+            <ArrowDownIcon color='var(--vb-gray-400)' />
           </Button> : <ConnectWalletBtn rightBtnStyle={rightBtnStyle} />}
         </Stack>
       </Stack>
     </Box>
     {isMobile && navBar}
-  </header>
+  </Box>
 }
