@@ -12,7 +12,7 @@ import ListItemButton from '@mui/material/ListItemButton'
 import ListItemIcon from '@mui/material/ListItemIcon'
 import ListItemText from '@mui/material/ListItemText'
 import Divider from '@mui/material/Divider'
-import useMobileQuery from '@/common/useMobileQuery'
+import useMedia from '@/common/useMedia'
 import Stack from '@mui/material/Stack'
 import ConnectionIcon from '/public/icon-connection.svg'
 import CloseBtnIcon from '/public/icon-close-btn.svg'
@@ -26,7 +26,7 @@ export default function ConnectWalletBtn({
 }: PropsType) {
   const { isDarkMode } = useThemeMode()
   const [open, setOpen] = useState(false)
-  const { isMobile, mobileQuery } = useMobileQuery()
+  const { isMobile, mobileQuery } = useMedia()
 
   const listItems = [
     { id: 'metamask', icon: '/metamask-logo.png', label: 'MetaMask' },
@@ -44,7 +44,7 @@ export default function ConnectWalletBtn({
       sx={Object.assign({}, rightBtnStyle, {
         border: 1,
         borderColor: 'common.white',
-        padding: '6px 12px',
+        p: '6px 12px',
       })}
       onClick={() => setOpen(true)}
     >
@@ -75,9 +75,9 @@ export default function ConnectWalletBtn({
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '24px 32px',
+          p: '24px 32px',
           [mobileQuery]: {
-            padding: 20,
+            p: 20,
           }
         }}
       >
@@ -88,7 +88,7 @@ export default function ConnectWalletBtn({
         {isMobile && <Button
           variant="text"
           sx={{
-            padding: 0,
+            p: 0,
             minWidth: 'auto',
             height: 'auto',
           }}
@@ -98,9 +98,9 @@ export default function ConnectWalletBtn({
         </Button>}
       </DialogTitle>
       <DialogContent sx={{
-        padding: '0 32px 32px 32px',
+        p: '0 32px 32px 32px',
         [mobileQuery]: {
-          padding: 20,
+          p: 20,
         }
       }}>
         <List
@@ -116,7 +116,7 @@ export default function ConnectWalletBtn({
               <ListItemButton sx={{ py: 12, gap: 16 }} onClick={() => handleClick(v.id)}>
                 <ListItemIcon sx={{ minWidth: 'auto' }}>
                   <NextImage
-                    alt="metamask"
+                    alt={v.label}
                     src={v.icon}
                     width={isMobile ? "28" : "36"}
                     height={isMobile ? "28" : "36"}

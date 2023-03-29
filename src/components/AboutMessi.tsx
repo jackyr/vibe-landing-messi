@@ -1,18 +1,20 @@
+import { memo } from 'react'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
 import CupIcon from '/public/icon-cup.svg'
 import FootballIcon from '/public/icon-football.svg'
-import ShoesIcon from '/public/icon-shoes.svg'
+import BootsIcon from '/public/icon-boots.svg'
 
-export default function AboutMessi() {
+export default memo(function AboutMessi() {
   return (
-    <Stack component='section' direction="row" justifyContent="center" spacing={646} sx={{
+    <Stack component='section' direction="row" justifyContent="space-between" sx={{
       mt: 60,
-      py: 140,
+      py: { md: 140 },
+      px: { xs: 20, md: 75, lg: 80, xl: 276 },
       backgroundImage: 'url(/messi-portrait.png)',
       backgroundRepeat: 'no-repeat',
       backgroundSize: '379px 648px',
-      backgroundPosition: 'center 148px',
+      backgroundPosition: 'calc(50% + 30px) 148px',
     }}>
       <Stack spacing={50} sx={{
         width: 360,
@@ -37,21 +39,21 @@ export default function AboutMessi() {
         textAlign: 'right',
       }}>
         <Stack spacing={23} alignItems='flex-end'>
-          <CupIcon color="common.gray-400" />
+          <CupIcon color="var(--vb-gray-400)" />
           <Stack>
             <Typography variant='displaySmall' color="common.white">345</Typography>
             <Typography variant='headlineLarge' color="common.gray-400">TROPHIES</Typography>
           </Stack>
         </Stack>
         <Stack spacing={23} alignItems='flex-end'>
-          <FootballIcon color="common.gray-400" />
+          <FootballIcon color="var(--vb-gray-400)" />
           <Stack>
             <Typography variant='displaySmall' color="common.white">10</Typography>
             <Typography variant='headlineLarge' color="common.gray-400">GOLDEN BALL</Typography>
           </Stack>
         </Stack>
         <Stack spacing={23} alignItems='flex-end'>
-          <ShoesIcon color="common.gray-400" />
+          <BootsIcon color="var(--vb-gray-400)" />
           <Stack>
             <Typography variant='displaySmall' color="common.white">8</Typography>
             <Typography variant='headlineLarge' color="common.gray-400">GOLDEN BOOTS</Typography>
@@ -60,4 +62,4 @@ export default function AboutMessi() {
       </Stack>
     </Stack>
   )
-}
+})

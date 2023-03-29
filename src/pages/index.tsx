@@ -7,6 +7,7 @@ import useCountdown from '@/common/useCountdown'
 import HeroSection from '@/components/HeroSection'
 import AboutMessi from '@/components/AboutMessi'
 import WhatsIn from '@/components/WhatsIn'
+import ShoeMenu from '@/components/shoeMenu/ShoeMenu'
 
 export default function Home() {
   const { isDarkMode } = useThemeMode()
@@ -40,6 +41,8 @@ export default function Home() {
         <HeroSection countdownListItems={countdownListItems} />
         <AboutMessi />
         <WhatsIn />
+        <ShoeMenu />
+        <br/><br/><br/><br/><br/><br/><br/><br/>
       </Container>
     </>
   )

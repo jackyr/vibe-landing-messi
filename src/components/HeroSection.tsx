@@ -1,5 +1,6 @@
+import { memo } from 'react'
 import Box from '@mui/material/Box'
-import useMobileQuery from '@/common/useMobileQuery'
+import useMedia from '@/common/useMedia'
 import useThemeMode from '@/common/useThemeMode'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
@@ -9,11 +10,11 @@ interface PropsType {
   countdownListItems: { label: string, value: number }[]
 }
 
-export default function HeroSection({
+export default memo(function HeroSection({
   countdownListItems,
 }: PropsType) {
   const { isDarkMode, toggleThemeMode } = useThemeMode()
-  const { isMobile, mobileQuery } = useMobileQuery()
+  const { isMobile, mobileQuery } = useMedia()
 
   return (<>
     <Stack component="section" alignItems="center">
@@ -82,4 +83,4 @@ export default function HeroSection({
       </Stack>
     </Stack>
   </>)
-}
+})

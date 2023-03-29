@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import Button from '@mui/material/Button'
 import NextLink from 'next/link'
 import NextImage from 'next/image'
@@ -8,7 +9,7 @@ import Typography from '@mui/material/Typography'
 import ConnectWalletBtn from './ConnectWalletBtn'
 import useThemeMode from '@/common/useThemeMode'
 import Stack from '@mui/material/Stack'
-import useMobileQuery from '@/common/useMobileQuery'
+import useMedia from '@/common/useMedia'
 import Logo from '/public/logo.svg'
 import ModeIcon from '/public/icon-mode.svg'
 import ArrowDownIcon from '/public/icon-arrow-down.svg'
@@ -25,18 +26,18 @@ interface PropsType {
 const rightBtnStyle = {
   background: 'var(--vb-surface-3)',
   gap: 6,
-  padding: 7,
+  p: 7,
   minWidth: 'auto',
   height: 30,
 }
 
-export default function Header({
+export default memo(function Header({
   tabValue,
   walletInfo,
   handleTabChange,
 }: PropsType) {
   const { isDarkMode, toggleThemeMode } = useThemeMode()
-  const { isMobile, mobileQuery } = useMobileQuery()
+  const { isMobile, mobileQuery } = useMedia()
 
   const tabItems = [
     { id: 'boots', label: 'THE BOOTS' },
@@ -121,4 +122,4 @@ export default function Header({
     </Box>
     {isMobile && navBar}
   </Box>
-}
+})
