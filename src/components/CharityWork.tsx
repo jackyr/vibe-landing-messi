@@ -38,7 +38,7 @@ export default memo(function CharityWork() {
       <Typography variant='bodyLarge' color='common.gray-200' sx={{
         width: 1090,
       }}>
-        Leo Messi, a football star for FC Barcelona and the Argentine national team, is considered one of the best and most respected players of his generation. He has won FIFA's Player of the Year award, the Ballon d'Or, six times. In February 2020, he was awarded the Laureus World Sportsman of the Year.
+        Leo Messi, a football star for FC Barcelona and the Argentine national team, is considered one of the best and most respected players of his generation. He has won FIFA&#39;s Player of the Year award, the Ballon d&#39;Or, six times. In February 2020, he was awarded the Laureus World Sportsman of the Year.
       </Typography>
       <Box sx={{
         width: 1368,
