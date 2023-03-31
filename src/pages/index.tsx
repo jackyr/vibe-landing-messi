@@ -2,17 +2,20 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Container from '@mui/material/Container'
 import Header from '@/components/header/Header'
+import Footer from '@/components/footer/Footer'
 import useThemeMode from '@/common/useThemeMode'
 import useCountdown from '@/common/useCountdown'
 import HeroSection from '@/components/HeroSection'
 import AboutMessi from '@/components/AboutMessi'
 import WhatsIn from '@/components/WhatsIn'
 import ShoeMenu from '@/components/shoeMenu/ShoeMenu'
+import RoadMap from '@/components/RoadMap'
+import CharityWork from '@/components/CharityWork'
 
 export default function Home() {
   const { isDarkMode } = useThemeMode()
   const [tabValue, setTabValue] = useState<'boots' | 'board'>('boots')
-  const [startTimeStamp, setStartTimeStamp] = useState(1681044374775)
+  const [startTimeStamp, setStartTimeStamp] = useState(1681844374775)
   const [walletInfo, setWalletInfo] = useState(null && {
     avatar: '/user-avatar.png',
     address: '0x22323232323232322',
@@ -42,8 +45,10 @@ export default function Home() {
         <AboutMessi />
         <WhatsIn />
         <ShoeMenu />
-        <br/><br/><br/><br/><br/><br/><br/><br/>
+        <RoadMap countdownListItems={countdownListItems} />
+        <CharityWork />
       </Container>
+      <Footer />
     </>
   )
 }

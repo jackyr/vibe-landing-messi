@@ -26,7 +26,7 @@ export default memo(function ShoeMenu() {
   ] as const
 
   return (
-    <Stack alignItems='center' sx={{
+    <Stack component='section' alignItems='center' sx={{
       pt: { lg: 80, md: 60, xs: 40 },
       pb: showExpanded ? { lg: 80, md: 60, xs: 40 } : undefined,
       bgcolor: '#004E8E',
