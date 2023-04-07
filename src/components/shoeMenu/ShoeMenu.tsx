@@ -9,11 +9,16 @@ import EyeIcon from '/public/icon-eye.svg'
 import ArrowToprightIcon from '/public/icon-arrow-topright.svg'
 import NextImage from 'next/image'
 import useThemeMode from '@/common/useThemeMode'
+import ShoeMenuExpanded from './ShoeMenuExpanded'
 
-export default memo(function ShoeMenu() {
+interface PropsType {
+  handleFullPage: (id: string) => void;
+}
+
+export default memo(function ShoeMenu({ handleFullPage }: PropsType) {
   const [selectedItem, setSelectedItem] = useState<'basic' | 'vip' | 'premium'>('basic')
   const [showExpanded, setShowExpanded] = useState(false)
-  const { isMobile, mobileQuery } = useMedia()
+  const { mobileQuery } = useMedia()
   const { isDarkMode } = useThemeMode()
   const matchXL = useMatch('xl')
   const matchLG = useMatch('lg')
@@ -32,13 +37,12 @@ export default memo(function ShoeMenu() {
       bgcolor: '#004E8E',
     }}>
       <Box sx={{ 
-        width: '100%',
-        maxWidth: 1280,
+        width: { lg: 1280, md: 834, xs: 390 },
       }}>
         {!showExpanded ? <Stack alignItems='center'>
           <Stack direction='row' justifyContent='space-between' sx={{
             width: '100%',
-            px: { lg: 80, md: 60, xs: 24 },
+            px: { lg: 80, md: 60, xs: 22 },
             [mobileQuery]: {
               flexDirection: 'column',
               gap: 30,
@@ -58,7 +62,7 @@ export default memo(function ShoeMenu() {
             </Stack>
             <Stack direction='row' spacing={{ md: 24, xs: 16 }}>
               <Button sx={{
-                'min-width': 'auto',
+                minWidth: 'auto',
                 width: { xs: 36, md: 44 },
                 height: { xs: 36, md: 44 },
                 bgcolor: 'rgba(255, 255, 255, 0.16)',
@@ -66,15 +70,15 @@ export default memo(function ShoeMenu() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 p: 0,
-              }}>
+              }} onClick={() => handleFullPage(selectedItem)}>
                 <EyeIcon
-                  width={isMobile ? 20 : 24}
-                  height={isMobile ? 20 : 24}
+                  width={matchMD ? 24 : 20}
+                  height={matchMD ? 24 : 20}
                   color={isDarkMode ? 'var(--vb-white)' : 'var(--vb-black)'}
                 />
               </Button>
               <Button sx={{
-                'min-width': 'auto',
+                minWidth: 'auto',
                 width: { xs: 36, md: 44 },
                 height: { xs: 36, md: 44 },
                 bgcolor: 'rgba(255, 255, 255, 0.16)',
@@ -82,10 +86,10 @@ export default memo(function ShoeMenu() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 p: 0,
-              }}>
+              }} onClick={() => setShowExpanded(true)}>
                 <ArrowToprightIcon
-                  width={isMobile ? 20 : 24}
-                  height={isMobile ? 20 : 24}
+                  width={matchMD ? 24 : 20}
+                  height={matchMD ? 24 : 20}
                   color={isDarkMode ? 'var(--vb-white)' : 'var(--vb-black)'}
                 />
               </Button>
@@ -95,11 +99,22 @@ export default memo(function ShoeMenu() {
             width: { lg: 1280, md: 1082, xs: 520 },
             height: { lg: 628, md: 570, xs: 256 },
           }} />
-          <Stack direction='row' spacing={60} sx={{ mb: -91 }}>
+          <Stack direction='row' spacing={{ lg: 60, md: 40, xs: 24 }} sx={{
+            mb: { lg: -93, md: -89, xs: -85 },
+            [mobileQuery]: {
+              width: '100%',
+              overflowX: 'auto',
+              px: 22,
+              WebkitOverflowScrolling: 'touch',
+              ['::-webkit-scrollbar']: {
+                display: 'none',
+              },
+            }
+          }}>
             {shoeItems.map(v => (
-              <Box key={v.id} sx={{
-                width: 230,
-                height: 264,
+              <Stack key={v.id} sx={{
+                width: { lg: 230, md: 212, xs: 200 },
+                height: { lg: 264, md: 260, xs: 224 },
                 border: 1,
                 borderColor: v.id === selectedItem ? 'common.white' : 'common.gray-600',
                 borderRadius: '9px',
@@ -107,6 +122,7 @@ export default memo(function ShoeMenu() {
                 overflow: 'hidden',
                 position: 'relative',
                 cursor: 'pointer',
+                flex: 'none',
               }} onClick={() => setSelectedItem(v.id)}>
                 <Box sx={{
                   position: 'absolute',
@@ -117,28 +133,37 @@ export default memo(function ShoeMenu() {
                   borderRadius: '4px',
                   p: '4px 6px',
                 }}>
-                  <Typography variant='labelSmall' color={isDarkMode ? 'common.white': 'common.black'}>{v.num}</Typography>
+                  <Typography
+                    variant='labelSmall'
+                    color={isDarkMode ? 'common.white': 'common.black'}>
+                      {v.num}
+                  </Typography>
                 </Box>
-                <NextImage
-                  src={v.picSrc}
-                  alt={v.id}
-                  width='230'
-                  height='172'
-                />
+                <Box sx={{
+                  flex: 1,
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}>
+                  <NextImage
+                    src={v.picSrc}
+                    alt={v.id}
+                    fill
+                  />
+                </Box>
                 <Stack spacing={4} sx={{ p: 16 }}>
                   <Typography
-                    variant='headlineLarge'
+                    variant={ matchLG ? 'headlineLarge' : 'headlineMedium' }
                     color='common.white'
                   >{v.id.toUpperCase()}</Typography>
                   <Typography
-                    variant='bodyLarge'
+                    variant={ matchLG ? 'bodyLarge' : matchMD ? 'titleMedium' : 'titleSmall' }
                     color='common.white'
                   >{v.price}</Typography>
                 </Stack>
-              </Box>
+              </Stack>
             ))}
           </Stack>
-        </Stack> : 123}
+        </Stack> : <ShoeMenuExpanded handleClose={() => setShowExpanded(false)} />}
       </Box>
     </Stack>
   )

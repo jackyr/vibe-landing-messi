@@ -24,6 +24,13 @@ export default function useCountdown(startTimeStamp: number) {
       calc()
       window.clearInterval(countdownIntervalRef.current)
       countdownIntervalRef.current = window.setInterval(calc, 1000)
+    } else {
+      setCountdownListItems([
+        { label: 'Days', value: 0 },
+        { label: 'Hrs', value: 0 },
+        { label: 'Mins', value: 0 },
+        { label: 'Secs', value: 0 },
+      ])
     }
   }, [startTimeStamp])
 

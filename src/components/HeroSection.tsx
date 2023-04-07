@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import Box from '@mui/material/Box'
-import useMedia from '@/common/useMedia'
+import { useMatch } from '@/common/useMedia'
 import useThemeMode from '@/common/useThemeMode'
 import Typography from '@mui/material/Typography'
 import Stack from '@mui/material/Stack'
@@ -13,68 +13,84 @@ interface PropsType {
 export default memo(function HeroSection({
   countdownListItems,
 }: PropsType) {
-  const { isDarkMode, toggleThemeMode } = useThemeMode()
-  const { isMobile, mobileQuery } = useMedia()
+  const matchMD = useMatch('md')
+  const { isDarkMode } = useThemeMode()
 
   return (<>
     <Stack component="section" alignItems="center">
       <Stack sx={{
-        mt: 50,
+        mt: { lg: 50, md: 34, xs: 26 },
         py: 50,
         backgroundImage: 'url(/boots-blue.png)',
-        backgroundSize: '860px 680px',
-        backgroundPosition: '-35px -112px',
+        backgroundSize: { lg: '860px auto', md: '750px auto', xs: '400px auto' },
+        backgroundPosition: { lg: '-35px -112px', md: '-56px -95px', xs: '-60px -23px' },
         backgroundRepeat: 'no-repeat',
         isolation: 'isolate',
       }}>
         <Typography sx={{
           fontFamily: 'Impact',
-          fontSize: 50,
-          lineHeight: '50px',
-          ml: 13,
-          color: isDarkMode ? 'white' : 'common.black',
-          WebkitTextStroke: isDarkMode ? 'white' : '1px var(--vb-gray-300)',
+          fontSize: { lg: 48, md: 42, xs: 21 },
+          lineHeight: 1,
+          ml: { lg: 13, md: 9, xs: 5 },
+          color: 'common.black',
+          WebkitTextStroke: isDarkMode ? '0.58px white' : '0.58px var(--vb-gray-300)',
         }}>THE</Typography>
         <Typography variant='h1' sx={{
           fontFamily: 'Impact',
-          fontSize: 293,
-          lineHeight: '250px',
+          fontSize: { lg: 292, md: 245, xs: 131 },
+          lineHeight: 0.853,
           color: isDarkMode ? 'white' : '#2f3131',
-          WebkitTextStroke: isDarkMode ? 'white' : '1px var(--vb-black)',
+          WebkitTextStroke: isDarkMode ? '0.58px white' : '0.58px var(--vb-black)',
           mixBlendMode: 'soft-light',
         }}>BOOTS</Typography>
       </Stack>
-      <Stack alignItems="center" sx={{ mt: 172 }}>
-        <Typography variant='headlineLarge' color={isDarkMode ? 'white' : 'common.white'}>
+      <Stack alignItems="center" sx={{ 
+        mt: { lg: 172, md: 162, xs: 142 }
+      }}>
+        <Typography
+          variant={ matchMD ? 'headlineLarge' : 'headlineSmall'}
+          color={isDarkMode ? 'white' : 'common.white'}
+        >
           THE NON -FUNGIBLE EXPERIENCE
         </Typography>
         <Box sx={{
-          mt: 41,
+          mt: { lg: 41, md: 39, xs: 19 },
           position: 'relative',
         }}>
           <MessiSignatureIcon color={isDarkMode ? 'white' : 'var(--vb-white)'} />
-          <Typography variant='bodyLarge' sx={{
-            fontWeight: 700,
-            color: isDarkMode ? 'white' : 'common.white',
-            position: 'absolute',
-            left: 35,
-            bottom: 3,
-            whiteSpace: 'nowrap'
-          }}>By Lionel Messi</Typography>
+          <Typography
+            variant={ matchMD ? 'bodyLarge' : 'bodyMedium'}
+            sx={{
+              fontWeight: 700,
+              color: isDarkMode ? 'white' : 'common.white',
+              position: 'absolute',
+              left: 35,
+              bottom: 3,
+              whiteSpace: 'nowrap'
+            }}>By Lionel Messi
+          </Typography>
         </Box>
-        <Stack direction="row" spacing={20} sx={{ mt: 67 }}>
+        <Stack direction="row" spacing={20} sx={{
+          mt: { lg: 67, md: 72, xs: 53 }
+        }}>
           {countdownListItems.map(v => (
             <Stack key={v.label} justifyContent="center" alignItems="center" sx={{
-              width: 86,
-              height: 86,
+              width: { md: 86, xs: 68 },
+              height: { md: 86, xs: 71 },
               bgcolor: 'common.surface-5',
               backdropFilter: 'blur(30px)',
               borderRadius: '5px',
             }}>
-              <Typography variant='headlineLarge' color='common.white'>
+              <Typography
+                variant={ matchMD ? 'headlineLarge' : 'headlineMedium' }
+                color='common.white'
+              >
                 {v.value}
               </Typography>
-              <Typography variant="bodyLarge" color='common.white'>
+              <Typography
+                variant={ matchMD ? 'bodyLarge' : 'bodyMedium' }
+                color='common.white'
+              >
                 {v.label}
               </Typography>
             </Stack>

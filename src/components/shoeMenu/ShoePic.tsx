@@ -1,5 +1,6 @@
 import Box from '@mui/material/Box'
 import NextImage from 'next/image'
+import useMedia from '@/common/useMedia'
 
 interface PropsType {
   sx: any
@@ -24,6 +25,8 @@ const highlightDotStyle = {
 }
 
 export default function ShoePic({ sx }: PropsType) {
+  const { isMobile } = useMedia()
+
   return (
     <Box sx={Object.assign({}, sx, {
       fontSize: 0,
@@ -35,9 +38,13 @@ export default function ShoePic({ sx }: PropsType) {
         src="/boots-collection.png"
         fill
       />
-      <Box sx={Object.assign({ top: '53.8%', left: '17.8%' }, highlightDotStyle)}></Box>
-      <Box sx={Object.assign({ top: '30.8%', left: '44.8%' }, highlightDotStyle)}></Box>
-      <Box sx={Object.assign({ top: '48.5%', left: '73.3%' }, highlightDotStyle)}></Box>
+      {
+        !isMobile && <>
+          <Box sx={Object.assign({ top: '53.8%', left: '17.8%' }, highlightDotStyle)}></Box>
+          <Box sx={Object.assign({ top: '30.8%', left: '44.8%' }, highlightDotStyle)}></Box>
+          <Box sx={Object.assign({ top: '48.5%', left: '73.3%' }, highlightDotStyle)}></Box>
+        </>
+      }
     </Box>
   )
 }

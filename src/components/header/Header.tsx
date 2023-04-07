@@ -21,6 +21,7 @@ interface PropsType {
     address: string,
   } | null,
   handleTabChange: (value: 'boots' | 'board') => void
+  handleConnect: (value: string) => void
 }
 
 const rightBtnStyle = {
@@ -35,6 +36,7 @@ export default memo(function Header({
   tabValue,
   walletInfo,
   handleTabChange,
+  handleConnect,
 }: PropsType) {
   const { isDarkMode, toggleThemeMode } = useThemeMode()
   const { isMobile, mobileQuery } = useMedia()
@@ -116,7 +118,10 @@ export default memo(function Header({
                 : walletInfo.address}
             </Typography>
             <ArrowDownIcon color='var(--vb-gray-400)' />
-          </Button> : <ConnectWalletBtn rightBtnStyle={rightBtnStyle} />}
+          </Button> : <ConnectWalletBtn
+            rightBtnStyle={rightBtnStyle}
+            handleConnect={handleConnect}
+          />}
         </Stack>
       </Stack>
     </Box>

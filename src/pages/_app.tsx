@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [themeMode])
 
   const theme = themeMode === 'dark' ? darkTheme : lightTheme
-  console.log(theme)
+
   return (themeMode && <ThemeContext.Provider value={{ 
     isDarkMode: themeMode === 'dark',
     themeMode,

@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Head from 'next/head'
 import Container from '@mui/material/Container'
 import Header from '@/components/header/Header'
@@ -15,12 +15,21 @@ import CharityWork from '@/components/CharityWork'
 export default function Home() {
   const { isDarkMode } = useThemeMode()
   const [tabValue, setTabValue] = useState<'boots' | 'board'>('boots')
-  const [startTimeStamp, setStartTimeStamp] = useState(1681844374775)
-  const [walletInfo, setWalletInfo] = useState(null && {
-    avatar: '/user-avatar.png',
-    address: '0x22323232323232322',
-  })
+  const [startTimeStamp, setStartTimeStamp] = useState<number>(NaN)
+  const [walletInfo, setWalletInfo] = useState<{ avatar: string, address: string } | null>(null)
   const { countdownListItems } = useCountdown(startTimeStamp)
+
+  useEffect(() => {
+    setStartTimeStamp(1681844374775)
+  }, [])
+
+  function handleConnect(value: string) {
+    console.log(value)
+    setWalletInfo({
+      avatar: '/user-avatar.png',
+      address: '0x22323232323232322',
+    })
+  }
 
   return (
     <>
@@ -34,17 +43,19 @@ export default function Home() {
         tabValue={tabValue}
         walletInfo={walletInfo}
         handleTabChange={setTabValue}
+        handleConnect={handleConnect}
       />
-      <Container component="main" maxWidth='xl' sx={{
+      <Container component="main" maxWidth='xl' disableGutters sx={{
+        overflow: 'hidden',
         backgroundImage: isDarkMode ? 'url(/hero-section-bg-dark.png)' : 'url(/hero-section-bg-light.png)',
         backgroundSize: '100% 1995px',
         backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center -60px',
+        backgroundPosition: { lg: 'center -60px', md: 'center -135px', xs: 'center -295px' },
       }}>
         <HeroSection countdownListItems={countdownListItems} />
         <AboutMessi />
         <WhatsIn />
-        <ShoeMenu />
+        <ShoeMenu handleFullPage={id => console.log(id)} />
         <RoadMap countdownListItems={countdownListItems} />
         <CharityWork />
       </Container>

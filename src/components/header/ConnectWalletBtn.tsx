@@ -19,10 +19,12 @@ import CloseBtnIcon from '/public/icon-close-btn.svg'
 
 interface PropsType {
   rightBtnStyle: object;
+  handleConnect: (value: string) => void;
 }
 
 export default function ConnectWalletBtn({
   rightBtnStyle,
+  handleConnect,
 }: PropsType) {
   const { isDarkMode } = useThemeMode()
   const [open, setOpen] = useState(false)
@@ -35,9 +37,9 @@ export default function ConnectWalletBtn({
   ]
 
   const handleClick = useCallback((id: string) => {
-    console.log(id)
+    handleConnect(id)
     setOpen(false)
-  }, [])
+  }, [handleConnect])
 
   return (<>
     <Button
