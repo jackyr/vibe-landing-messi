@@ -25,7 +25,7 @@ interface PropsType {
 }
 
 const rightBtnStyle = {
-  background: 'var(--vb-surface-3)',
+  background: 'var(--vb-on-surface-3)',
   gap: 6,
   p: 7,
   minWidth: 'auto',

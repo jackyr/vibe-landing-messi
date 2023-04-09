@@ -128,7 +128,7 @@ export default memo(function RoadMap({
                 <Stack key={v.label} justifyContent="center" alignItems="center" sx={{
                   width: { md: 86, xs: 68 },
                   height: { md: 86, xs: 71 },
-                  bgcolor: 'common.surface-5',
+                  bgcolor: 'common.on-surface-5',
                   backdropFilter: 'blur(30px)',
                   borderRadius: '5px',
                 }}>
