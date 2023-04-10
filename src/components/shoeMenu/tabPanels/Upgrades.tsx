@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box'
 
-export default function Updates() {
+export default function Upgrades() {
   return (
     <Box>
-      updates
+      upgrades
     </Box>
   )
 }

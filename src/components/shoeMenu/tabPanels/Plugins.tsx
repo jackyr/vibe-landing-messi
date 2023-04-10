@@ -1,9 +1,9 @@
 import Box from '@mui/material/Box'
 
-export default function Extension() {
+export default function Plugins() {
   return (
     <Box>
-      extension
+      plugins
     </Box>
   )
 }

@@ -15,7 +15,7 @@ const RootThemes = {
   breakpoints: {
     values: {
       xs: 0,
-      sm: 640,
+      //sm: 640,
       md: 834,
       lg: 1280,
       xl: 1920

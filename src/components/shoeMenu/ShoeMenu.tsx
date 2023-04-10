@@ -35,19 +35,19 @@ export default memo(function ShoeMenu({ handleFullPage }: PropsType) {
   return (
     <Stack component='section' alignItems='center' sx={{
       pt: { lg: 80, md: 60, xs: 40 },
-      pb: showExpanded ? { lg: 80, md: 60, xs: 40 } : undefined,
+      pb: showExpanded && matchLG ? { lg: 80, md: 60, xs: 40 } : undefined,
       bgcolor: '#004E8E',
     }}>
       <Stack direction='row' justifyContent='space-between' spacing={{ xl: 100, lg: 46 }} sx={{ 
-        width: showExpanded ? { xl: 1368, lg: 1120 } : { lg: 1280, md: 834, xs: 390 },
+        width: showExpanded && matchLG ? { xl: 1368, lg: 1120 } : { lg: 1280, md: 834, xs: 390 },
       }}>
-        <Stack alignItems='center' spacing={showExpanded ? 62 : 0} sx={{
+        <Stack alignItems='center' spacing={showExpanded && matchLG ? 62 : 0} sx={{
           flex: 1,
           overflow: 'hidden',
         }}>
           <Stack direction='row' justifyContent='space-between' sx={{
             width: '100%',
-            px: showExpanded ? 0 : { lg: 80, md: 60, xs: 22 },
+            px: showExpanded && matchLG ? 0 : { lg: 80, md: 60, xs: 22 },
             [mobileQuery]: {
               flexDirection: 'column',
               gap: 30,
@@ -70,7 +70,7 @@ export default memo(function ShoeMenu({ handleFullPage }: PropsType) {
                 3 TIERS
               </Typography>
             </Stack>
-            {!showExpanded && <Stack direction='row' spacing={{ md: 24, xs: 16 }}>
+            {!(showExpanded && matchLG) && <Stack direction='row' spacing={{ md: 24, xs: 16 }}>
               <Button sx={{
                 minWidth: 'auto',
                 width: { xs: 36, md: 44 },
@@ -106,8 +106,8 @@ export default memo(function ShoeMenu({ handleFullPage }: PropsType) {
             </Stack>}
           </Stack>
           <ShoePic sx={{
-            width: showExpanded ? { xl: 758, lg: 664 } : { lg: 1280, md: 1082, xs: 520 },
-            height: showExpanded ? { xl: 372, lg: 326 } : { lg: 628, md: 570, xs: 256 },
+            width: showExpanded && matchLG ? { xl: 758, lg: 664 } : { lg: 1280, md: 1082, xs: 520 },
+            height: showExpanded && matchLG ? { xl: 372, lg: 326 } : { lg: 628, md: 570, xs: 256 },
           }} />
           {showExpanded && matchLG && <Stack direction='row' spacing={35}>
             {shoeItems.map(v => (
@@ -168,6 +168,15 @@ export default memo(function ShoeMenu({ handleFullPage }: PropsType) {
           open={showExpanded}
           onClose={() => setShowExpanded(false)}
           onOpen={() => setShowExpanded(true)}
+          sx={{
+            ['& .MuiBackdrop-root']: {
+              bgcolor: 'transparent',
+            },
+            ['& .MuiPaper-root']: {
+              overflow: 'visible',
+              height: '80%',
+            }
+          }}
         >
           <NFTContent
             itemData={shoeItems.find(v => v.id === selectedItem) as typeof shoeItems[number]}
