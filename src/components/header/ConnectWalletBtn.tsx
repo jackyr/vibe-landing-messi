@@ -84,7 +84,7 @@ export default function ConnectWalletBtn({
         }}
       >
         <Stack direction="row" spacing={10}>
-          <ConnectionIcon color="var(--vb-white)" />
+          <ConnectionIcon width="24" height="24" color="var(--vb-white)" />
           <Typography>CONNECT YOUR WALLET</Typography>
         </Stack>
         {isMobile && <Button

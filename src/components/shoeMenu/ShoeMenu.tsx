@@ -159,7 +159,7 @@ export default memo(function ShoeMenu({ handleFullPage }: PropsType) {
             <CloseIcon
               width={20}
               height={20}
-              color={isDarkMode ? 'var(--vb-white)' : 'var(--vb-black)'}
+              color='var(--vb-white)'
             />
           </Box>
         </Box>}

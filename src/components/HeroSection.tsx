@@ -39,9 +39,21 @@ export default memo(function HeroSection({
           fontFamily: 'Impact',
           fontSize: { lg: 292, md: 245, xs: 131 },
           lineHeight: 0.853,
-          color: isDarkMode ? 'white' : '#2f3131',
+          color: 'transparent',
           WebkitTextStroke: isDarkMode ? '0.58px white' : '0.58px var(--vb-black)',
-          mixBlendMode: 'soft-light',
+          position: 'relative',
+          ':after': {
+            content: '"BOOTS"',
+            fontFamily: 'Impact',
+            fontSize: { lg: 292, md: 245, xs: 131 },
+            lineHeight: 0.853,
+            color: isDarkMode ? 'white' : '#2f3131',
+            mixBlendMode: isDarkMode ? 'darken' : 'lighten',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            zIndex: -1,
+          },
         }}>BOOTS</Typography>
       </Stack>
       <Stack alignItems="center" sx={{ 

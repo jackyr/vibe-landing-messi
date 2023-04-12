@@ -53,7 +53,7 @@ export const DarkColor = {
   "red-300": "#F07070",
   "red-200": "#F5A3A3",
   "red-100": "#FAD1D1",
-  "red-50": "#FDE8E8"
+  "red-50": "#FDE8E8",
 }
 
 export const LightColor = {
@@ -74,9 +74,10 @@ export const LightColor = {
   "gray-300": "#444747",
   "gray-200": "#2E3131",
   "gray-100": "#191C1C",
-  "gray-50": "#ECF1F1",
+  "gray-50": "#0f1111",
   "surface-5": "linear-gradient(0deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.04)), #080808",
-  "surface-4": "linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), #080808",
+  // "surface-4": "linear-gradient(0deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.06)), #080808",
+  "surface-4": "linear-gradient(0deg, rgba(77, 77, 77, 0.08), rgba(77, 77, 77, 0.08)), #F7FBFD",
   "surface-3": "linear-gradient(0deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.08)), #080808",
   "surface-2": "linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.1)), #080808",
   "surface-1": "linear-gradient(0deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), #080808",
@@ -111,7 +112,7 @@ export const LightColor = {
   "red-300": "#F07070",
   "red-200": "#F5A3A3",
   "red-100": "#FAD1D1",
-  "red-50": "#FDE8E8"
+  "red-50": "#FDE8E8",
 }
 
 type IThemeColor = typeof DarkColor & typeof LightColor

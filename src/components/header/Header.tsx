@@ -1,4 +1,5 @@
 import { memo } from 'react'
+import { useRouter } from 'next/router'
 import Button from '@mui/material/Button'
 import NextLink from 'next/link'
 import NextImage from 'next/image'
@@ -20,7 +21,6 @@ interface PropsType {
     avatar: string,
     address: string,
   } | null,
-  handleTabChange: (value: 'boots' | 'board') => void
   handleConnect: (value: string) => void
 }
 
@@ -35,15 +35,15 @@ const rightBtnStyle = {
 export default memo(function Header({
   tabValue,
   walletInfo,
-  handleTabChange,
   handleConnect,
 }: PropsType) {
+  const router = useRouter()
   const { isDarkMode, toggleThemeMode } = useThemeMode()
   const { isMobile, mobileQuery } = useMedia()
 
   const tabItems = [
-    { id: 'boots', label: 'THE BOOTS' },
-    { id: 'board', label: 'LEADERBOARD' },
+    { id: 'boots', label: 'THE BOOTS', href: '/' },
+    { id: 'board', label: 'LEADERBOARD', href: '/leaderboard' },
   ]
 
   const navBar = (<Tabs
@@ -56,7 +56,7 @@ export default memo(function Header({
       }
     }}
     value={tabValue}
-    onChange={(e, value) => handleTabChange(value)}
+    onChange={(e, v) => router.push(tabItems.find((vv) => vv.id === v)?.href || '')}
   >
     {tabItems.map(v => (
       <Tab
@@ -99,7 +99,7 @@ export default memo(function Header({
             sx={rightBtnStyle}
             onClick={toggleThemeMode}
           >
-            <ModeIcon color='var(--vb-white)' />
+            <ModeIcon width="16" height="16" color="var(--vb-white)" />
           </Button>
           {walletInfo ? <Button sx={rightBtnStyle} >
             <NextImage

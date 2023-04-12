@@ -17,7 +17,7 @@ const listItems = [
 
 const leftIconStyle = {
   position: 'relative',
-  top: -7,
+  top: { md: -7, xs: -3 },
 }
 
 export default memo(function RoadMap({
@@ -63,7 +63,7 @@ export default memo(function RoadMap({
           backgroundRepeat: 'no-repeat',
           backgroundPosition: { lg: 'right 50px', md: 'calc(100% + 127px) top' },
         }}>
-          <Stack alignItems='center'>
+          <Stack alignItems="center" sx={{ mt: { md: -4, xs: 4 } }}>
             <Stack justifyContent='center' alignItems='center' sx={{
               width: { md: 48, xs: 28 },
               height: { md: 48, xs: 28 },
@@ -78,7 +78,7 @@ export default memo(function RoadMap({
             </Stack>
             <Stack justifyContent='center' alignItems='center' sx={{
               width: 12,
-              height: { xl: 207, lg: 196, md: 163, xs: 150 },
+              height: { xl: 207, lg: 196, md: 163, xs: 140 },
               background: 'linear-gradient(180deg, #249FE4 0%, rgba(36, 159, 228, 0) 100%)',
               ...leftIconStyle,
             }}>
