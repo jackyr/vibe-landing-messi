@@ -1,6 +1,5 @@
 import { memo } from 'react'
 import Head from 'next/head'
-import Header from '@/components/header/Header'
 import Container from '@mui/material/Container'
 import Box from '@mui/material/Box'
 import Dashboard from '@/components/leaderboard/Dashboard'

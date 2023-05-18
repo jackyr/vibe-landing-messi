@@ -43,7 +43,7 @@ export default function NFTContent({
   const matchLG = useMatch('lg')
   const [currentTab, setCurrentTab] = useState('attributes')
   const { isDarkMode } = useThemeMode()
-  const { countdownListItems } = useCountdown(1681844374775)
+  const { countdownListItems } = useCountdown(1692316800000)
   const [cartCount, setCartCount] = useState(1)
 
   const tabItems = [

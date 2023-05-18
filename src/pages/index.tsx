@@ -17,7 +17,7 @@ export default function Home() {
   const { countdownListItems } = useCountdown(startTimeStamp)
 
   useEffect(() => {
-    setStartTimeStamp(1681844374775)
+    setStartTimeStamp(1692316800000)
   }, [])
 
   return (
